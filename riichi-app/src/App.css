@@ -1,0 +1,91 @@
+#root {
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+h1 {
+  margin: 15px 0;
+}
+
+.yaku-list {
+  width: 50vw;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.yaku-main {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.yaku-sub {
+  opacity: 0.6;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 0.8em;
+}
+
+.yaku-tiles-container {
+  margin-top: 20px;
+}
+
+.yaku-tiles {
+  width: 30px;
+  padding: 0 1px 0 1px;
+}
+
+.yaku-tiles.kan {
+  padding: 0;
+}
+
+.yaku-tiles.kan.rotated {
+  height: 30px;
+  width: auto;
+}
+
+.kan-group {
+  padding: 0 4px 0 4px;
+}
+
+.win-group {
+  padding: 0 0 0 26px;
+  min-height: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
+.winning-tile-separator {
+  padding: 0 6px 0 6px;
+  align-items: center;
+  font-weight: bold;
+}
+
+.yaku-note {
+  opacity: 0.6;
+  font-style: italic;
+  margin-top: 16px;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
