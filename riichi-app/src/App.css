@@ -5,7 +5,61 @@
 }
 
 h1 {
+  font-size: 2em;
   margin: 15px 0;
+}
+
+table {
+  margin: 0 auto;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+th {
+  padding: 2px 10px;
+}
+
+.th-num {
+  background-color: #fff2cc;
+}
+
+.th-man {
+  background-color: #f4cccc;
+}
+
+.td-man {
+  background-color: #ea9999;
+}
+
+.th-pin {
+  background-color: #cfe2f3;
+}
+
+.td-pin {
+  background-color: #b0cfeb;
+}
+
+.th-sou {
+  background-color: #d9ead3;
+}
+
+.td-sou {
+  background-color: #b6d7a8;
+}
+
+.th-hon {
+  background-color: #d9d2e9;
+}
+
+.td-hon {
+  background-color: #b4a7d6;
+}
+
+.ref-tiles {
+  width: 60px;
+  padding: 6px;
 }
 
 .yaku-list {
@@ -88,4 +142,15 @@ h1 {
 
 .read-the-docs {
   color: #888;
+}
+
+@media only screen and (max-width: 940px) {
+  .yaku-list {
+  width: 100%;
+  margin: 0 auto;
+  }
+  .ref-tiles {
+  width: 40px;
+  padding: 6px;
+  }
 }

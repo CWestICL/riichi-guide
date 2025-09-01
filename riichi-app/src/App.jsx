@@ -1,40 +1,48 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+
+import Box from '@mui/material/Box';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Paper from '@mui/material/Paper';
+
 import YakuList from './YakuList.jsx'
+import TileReference from './TileReference.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [nav, setNav] = useState(0);
+  const [content, setContent] = useState(null);
 
-  let defaulthtml = (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  useEffect(() => {
+    switch (nav) {
+      case 0:
+        setContent(<TileReference />)
+        break;
+      case 1:
+        setContent(<YakuList />)
+        break;
+    }
+  }, [nav, setContent]);
 
   return (
     <>
-      <YakuList />
+      <Box sx={{ pb: 7 }}>
+        {content}
+      </Box>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <BottomNavigation
+          showLabels
+          value={nav}
+          onChange={(event, newValue) => {
+            setNav(newValue);
+          }}
+        >
+          <BottomNavigationAction label="Components" />
+          <BottomNavigationAction label="Yaku List" />
+        </BottomNavigation>
+      </Paper>
     </>
   )
 }
