@@ -79,9 +79,9 @@ function TenbouReference({ tenbouColor, setTenbouColor }) {
       <table className='tenbou-table'>
         <thead>
           <tr>
-            <th>Points</th>
-            <th></th>
-            <th>Initial Deal</th>
+            <th className='tenbou-left'>Points</th>
+            <th className='tenbou-center'></th>
+            <th className='tenbou-right'>Initial Deal</th>
           </tr>
         </thead>
         <tbody>{tenbouRows}</tbody>

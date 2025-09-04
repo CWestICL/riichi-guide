@@ -56,8 +56,8 @@ function App() {
             setNav(newValue);
           }}
         >
-          <BottomNavigationAction label="Components" icon={<Icon><img className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root" src='/icon1.svg'/></Icon>} />
-          <BottomNavigationAction label="Yaku List" icon={<Icon><img className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root" src='/icon2.svg'/></Icon>} />
+          <BottomNavigationAction label="Components" icon={<Icon><img className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root" src='/icon_components.svg'/></Icon>} />
+          <BottomNavigationAction label="Yaku List" icon={<Icon><img className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root" src='/icon_yaku.svg'/></Icon>} />
         </BottomNavigation>
       </Paper>
     </>
