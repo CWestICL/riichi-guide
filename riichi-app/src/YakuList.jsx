@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import YakuTiles from './YakuTiles.jsx'
+import YakuItem from './YakuItem.jsx'
 import YAKUS from './Yakus.jsx'
+import YAKUCOLORS from './Colors.jsx'
 
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -17,6 +18,7 @@ import Tab from '@mui/material/Tab';
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import NativeSelect from '@mui/material/NativeSelect';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -29,175 +31,74 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const yakuColors = {
-  gameplay: "#d9d2e9",
-  closed: "#cfe2f3",
-  penalty: "#c9daf8",
-  open: "#b0cfeb",
-  closedyakuman: "#f4cccc",
-  openyakuman: "#ea9999",
-  lucky: "#fff2cc",
-  luckyyakuman: "#ffe599",
-  special: "#d9ead3",
-  closedhan: "#ffffff",
-  openhan: "#efefef",
-  anyhan: "#f3f3f3",
-}
-
-function YakuList() {
-  const [english, setEnglish] = useState(true)
+function YakuList({ mini, english, setEnglish, yakuTab, setYakuTab}) {
   const [expanded, setExpanded] = useState(null);
-  const [tab, setTab] = useState(2);
-
-  const handleExpandChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
 
   const handleTabChange = (event, newValue) => {
-    console.log("Tab: " + newValue);
-    setTab(newValue);
+    console.log(newValue)
+    console.log(typeof newValue)
+    setYakuTab(newValue);
   };
 
   const handleSwitchChange = (event) => {
     setEnglish(event.target.checked);
   };
 
-  function createAccordion(yaku,idx,english,tab) {
-    switch (tab) {
-      case 0:
-        if (yaku["difficulty"] !== "basic") {
-          return (<></>)
-        }
-        break;
+  const handleDropChange = (event) => {
+    console.log(event.target.value)
+    console.log(typeof event.target.value)
+    setYakuTab(Number(event.target.value));
+  };
 
-      case 1:
-        if (yaku["difficulty"] !== "basic" && yaku["difficulty"] !== "intermediate") {
-          return (<></>)
-        }
-        break;
-      
-      case 3:
-        if (yaku["type"].includes("lucky") || yaku["type"].includes("yakuman") || yaku["type"].includes("special")) {
-          return (<></>)
-        }
-        break;
-      
-      case 4:
-        if (!yaku["type"].includes("yakuman")) {
-          return (<></>)
-        }
-        break;
-      
-      case 5:
-        if (!yaku["type"].includes("lucky") && !yaku["type"].includes("special")) {
-          return (<></>)
-        }
-        break;
-    }
-    let bgColor = yakuColors[yaku["type"]];
-    let yakuMain = yaku["ename"];
-    let yakuSub = yaku["jname"];
-    if (!english) {
-      yakuMain = yaku["jname"];
-      yakuSub = yaku["ename"];
-    }
-    let closedHan;
-    let openHan;
-    if (!isNaN(yaku["closedh"])) {
-      closedHan = yaku["closedh"] + " Han";
-      openHan = yaku["openh"] + " Han";
-    }
-    else {
-      closedHan = yaku["closedh"]
-      openHan = yaku["openh"]
-    }
-    if (yaku["openh"] === 0) {
-      openHan = "-"
-    }
-    let hanGrid = (
-      <>
-      <Grid size={2}>
-        <Item sx={{ fontWeight: "bold", backgroundColor: yakuColors["closedhan"] }}>{closedHan}</Item>
-      </Grid>
-      <Grid size={2}>
-        <Item sx={{ fontWeight: "bold", backgroundColor: yakuColors["openhan"] }}>{openHan}</Item>
-      </Grid>
-      </>
-    )
-    if (yaku["closedh"] === yaku["openh"]) {
-      hanGrid = (
-        <Grid size={4}>
-          <Item sx={{ fontWeight: "bold", backgroundColor: yakuColors["anyhan"] }}>{closedHan}</Item>
-        </Grid>
-      )
-    }
-    let yakuExample = (<></>);
-    if (yaku["examplehand"]) {
-      yakuExample = (
-        <YakuTiles example={yaku["examplehand"]} />
-      )
-    }
+  const tabMenu = (
+    <Tabs value={yakuTab} onChange={handleTabChange} sx={{ marginBottom: "20px" }} centered>
+      <Tab label="Beginner" />
+      <Tab label="Intermediate" />
+      <Tab label="All" />
+      <Tab label="Standard" />
+      <Tab label="Yakuman" />
+      <Tab label="Rare" />
+    </Tabs>
+  )
 
-    let yakuNote = (<></>);
-    if (yaku["note"]) {
-      yakuNote = (
-        <div className='yaku-note'>
-          {yaku["note"]}
-        </div>
-      )
-    }
-
-    return (
-      <Accordion sx={{ backgroundColor: bgColor }} id={"panel-" + idx} expanded={expanded === 'panel-' + idx} onChange={handleExpandChange('panel-' + idx)}>
-        <AccordionSummary sx={{ margin: "0px" }} id="panel-header" aria-controls="panel-content">
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2} alignItems="center">
-              <Grid size={8}>
-                <div>
-                  <p className="yaku-sub">{yakuSub}</p>
-                  <h3 className="yaku-main">{yakuMain}</h3>
-                </div>
-              </Grid>
-              {hanGrid}
-            </Grid>
-          </Box>
-        </AccordionSummary>
-        <AccordionDetails sx={{ textAlign: "left" }}>
-          {yaku["description"]}
-          {yakuExample}
-          {yakuNote}
-        </AccordionDetails>
-      </Accordion>
-    )
-  }
-
-  const yakuItems = [];
-  for (let i = 0; i < YAKUS.length; i++) {
-    yakuItems.push(createAccordion(YAKUS[i],i,english,tab));
-  }
+  const dropMenu = (
+    <NativeSelect value={yakuTab} onChange={handleDropChange} sx={{ marginBottom: "20px" }}>
+      <option value={0}>Beginner</option>
+      <option value={1}>Intermediate</option>
+      <option value={2}>All</option>
+      <option value={3}>Standard</option>
+      <option value={4}>Yakuman</option>
+      <option value={5}>Rare</option>
+    </NativeSelect>
+  )
 
   return (
     <>
-      <FormGroup>
-        <FormControlLabel control={
-          <Switch
-            checked={english}
-            onChange={handleSwitchChange}
-            slotProps={{ input: { 'aria-label': 'controlled' } }}
-          />
-        } label="English Names" />
-      </FormGroup>
       <h1>Yaku List</h1>
-      <Tabs value={tab} onChange={handleTabChange} sx={{ marginBottom: "20px" }} centered>
-        <Tab label="Beginner" />
-        <Tab label="Intermediate" />
-        <Tab label="All" />
-        <Tab label="Standard" />
-        <Tab label="Yakuman" />
-        <Tab label="Rare" />
-      </Tabs>
+      {mini ? dropMenu : tabMenu}
       <div className='yaku-list'>
-        {yakuItems}
+        <Grid container spacing={2} alignItems="center" sx={{ margin: "12px 0", padding: "0 16px" }}>
+          <Grid size={mini ? 6 : 8}>
+            <FormGroup sx={{ padding: "0 16px" }}>
+              <FormControlLabel control={
+                <Switch
+                  checked={english}
+                  onChange={handleSwitchChange}
+                  slotProps={{ input: { 'aria-label': 'controlled' } }}
+                />
+              } label="English Names" />
+            </FormGroup>
+          </Grid>
+          <Grid size={mini ? 3 : 2}>
+            <Item sx={{ fontWeight: "bold", backgroundColor: YAKUCOLORS["closedhan"] }}>Closed</Item>
+          </Grid>
+          <Grid size={mini ? 3 : 2}>
+            <Item sx={{ fontWeight: "bold", backgroundColor: YAKUCOLORS["openhan"] }}>Open</Item>
+          </Grid>
+        </Grid>
+        {YAKUS.map((yaku) => (
+          <YakuItem mini={mini} yaku={yaku} english={english} yakuTab={yakuTab} expanded={expanded} setExpanded={setExpanded} />
+        ))}
       </div>
     </>
   )

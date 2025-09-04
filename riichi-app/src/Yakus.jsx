@@ -463,7 +463,7 @@ const YAKUS = [
         ),
         note: (
             <>
-                (Note: Closed triplets can't be completed by calling<b>"Ron"</b>)
+                (Note: Closed triplets can't be completed by calling <b>"Ron"</b>)
             </>
         ),
         examplehand: {

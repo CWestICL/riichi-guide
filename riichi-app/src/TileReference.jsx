@@ -18,28 +18,15 @@ import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: (theme.vars ?? theme).palette.text.secondary,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
-}));
-
-function TileReference() {
-  const [tab, setTab] = useState(0);
-
-  const handleTabChange = (event, newValue) => {
-    console.log("Tab: " + newValue);
-    setTab(newValue);
-  };
-
+function TileReference({ mini }) {
   const numHeaders = []
   for (let i = 1; i < 10; i++) {
-    numHeaders.push(<th>{i}</th>)
+    if (i === 1 || i === 9) {
+      numHeaders.push(<th className='th-terminal'>{i}</th>);
+    }
+    else {
+      numHeaders.push(<th>{i}</th>);
+    }
   }
 
   const tileRows = [];
@@ -70,44 +57,96 @@ function TileReference() {
     honTiles.push(<td><img src={"/tile_hon_" + i + ".png"} className='ref-tiles' /></td>)
   }
 
-  return (
-    <>
-      <h1>Components</h1>
-      <Tabs value={tab} onChange={handleTabChange} sx={{ marginBottom: "20px" }} centered>
-        <Tab label="Tiles" />
-      </Tabs>
-      <h2>Number Tiles</h2>
-      <table>
-        <tr className='th-num'>
-          <th rowSpan={2}>Suit</th>
-          <th>Terminal</th>
-          <th colSpan={7}>Simples</th>
-          <th>Terminal</th>
-        </tr>
-        <tr className='th-num'>
-          {numHeaders}
-        </tr>
-        {tileRows}
-      </table>
-      <h2>Honor Tiles</h2>
-      <table>
+  const bigHonTable = (
+    <table>
+      <thead>
         <tr className='th-hon'>
           <th colSpan={4}>Wind Tiles</th>
           <th colSpan={4}>Dragon Tiles</th>
         </tr>
         <tr className='th-hon'>
-          <th>East</th>
-          <th>South</th>
-          <th>West</th>
-          <th>North</th>
+          <th>East 東</th>
+          <th>South 南</th>
+          <th>West 西</th>
+          <th>North 北</th>
           <th>White Dragon</th>
           <th>Green Dragon</th>
           <th>Red Dragon</th>
         </tr>
+      </thead>
+      <tbody>
         <tr className='td-hon'>
           {honTiles}
         </tr>
+      </tbody>
+    </table>
+  )
+
+  const smallHonTable = (
+    <>
+      <div className='table-container'>
+        <table>
+          <thead>
+            <tr className='th-hon'>
+              <th colSpan={4}>Wind Tiles</th>
+            </tr>
+            <tr className='th-hon'>
+              <th>East 東</th>
+              <th>South 南</th>
+              <th>West 西</th>
+              <th>North 北</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className='td-hon'>
+              {honTiles.slice(0,4)}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className='table-container'>
+      <table>
+        <thead>
+          <tr className='th-hon'>
+            <th colSpan={4}>Dragon Tiles</th>
+          </tr>
+          <tr className='th-hon'>
+            <th>White Dragon</th>
+            <th>Green Dragon</th>
+            <th>Red Dragon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className='td-hon'>
+            {honTiles.slice(4)}
+          </tr>
+        </tbody>
       </table>
+      </div>
+    </>
+  )
+
+  return (
+    <>
+      <h2>Number Tiles</h2>
+      <div className='table-container'>
+        <table>
+          <thead>
+            <tr className='th-num'>
+              <th rowSpan={2}>Suit</th>
+              <th className='th-terminal'>Terminal</th>
+              <th colSpan={7}>Simples</th>
+              <th className='th-terminal'>Terminal</th>
+            </tr>
+            <tr className='th-num'>
+              {numHeaders}
+            </tr>
+          </thead>
+          <tbody>{tileRows}</tbody>
+        </table>
+      </div>
+      <h2>Honor Tiles</h2>
+      {mini ? smallHonTable : bigHonTable}
     </>
   )
 }
