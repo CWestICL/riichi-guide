@@ -21,7 +21,7 @@ function App() {
   const [tenbouColor, setTenbouColor] = useState(false);
   const [componentTab, setComponentTab] = useState(0);
 
-  const [english, setEnglish] = useState(false);
+  const [english, setEnglish] = useState(true);
   const [yakuTab, setYakuTab] = useState(2);
 
   useEffect(() => {
