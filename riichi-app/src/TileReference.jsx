@@ -128,7 +128,8 @@ function TileReference({ mini }) {
 
   return (
     <>
-      <h2>Number Tiles</h2>
+      <h1>Tiles</h1>
+      <h3>Number Tiles</h3>
       <div className='table-container'>
         <table>
           <thead>
@@ -145,7 +146,7 @@ function TileReference({ mini }) {
           <tbody>{tileRows}</tbody>
         </table>
       </div>
-      <h2>Honor Tiles</h2>
+      <h3>Honor Tiles</h3>
       {mini ? smallHonTable : bigHonTable}
     </>
   )

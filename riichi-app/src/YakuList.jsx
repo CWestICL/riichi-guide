@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import YakuItem from './YakuItem.jsx'
+import Item from './Item.jsx'
 import YAKUS from './Yakus.jsx'
 import YAKUCOLORS from './Colors.jsx'
 
@@ -20,17 +21,6 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import NativeSelect from '@mui/material/NativeSelect';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: (theme.vars ?? theme).palette.text.secondary,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
-}));
-
 function YakuList({ mini, english, setEnglish, yakuTab, setYakuTab}) {
   const [expanded, setExpanded] = useState(null);
 
@@ -45,8 +35,6 @@ function YakuList({ mini, english, setEnglish, yakuTab, setYakuTab}) {
   };
 
   const handleDropChange = (event) => {
-    console.log(event.target.value)
-    console.log(typeof event.target.value)
     setYakuTab(Number(event.target.value));
   };
 

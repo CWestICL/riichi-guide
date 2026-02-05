@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import YakuTiles from './YakuTiles.jsx'
+import Item from './Item.jsx'
 import YAKUS from './Yakus.jsx'
 import YAKUCOLORS from './Colors.jsx'
 
@@ -18,17 +19,6 @@ import Tab from '@mui/material/Tab';
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: (theme.vars ?? theme).palette.text.secondary,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
-}));
 
 function YakuItem({ mini, yaku, english, yakuTab, expanded, setExpanded}) {
   const handleExpandChange = (panel) => (event, newExpanded) => {
