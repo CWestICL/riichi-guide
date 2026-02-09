@@ -186,6 +186,32 @@ th {
   background-color: var(--blue_mid);
 }
 
+tbody.td-score td {
+  padding: 0 10px;
+}
+
+table.td-fu, table.td-trip {
+  border-collapse:separate; 
+  border-spacing: 0 10px;
+}
+
+table.td-fu tr {
+  background-color: var(--blue_mid);
+  margin: 10px 0;
+}
+
+table.td-trip tr {
+  background-color: var(--green_mid);
+}
+
+table.td-trip tr.top {
+  margin-top: 10px;
+}
+
+table.td-trip tr.bottom {
+  margin-bottom: 10px;
+}
+
 .num-field {
   display: flex;
   flex-direction: column;

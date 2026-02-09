@@ -48,17 +48,34 @@ function App() {
   const [dealer, setDealer] = useState(1);
   const [han, setHan] = useState(1);
   const [chiitoitsu, setChiitoitsu] = useState(false);
+  const [pinfu, setPinfu] = useState(false);
+  const [closedHand, setClosedHand] = useState(false);
   const [win, setWin] = useState(0);
   const [valuePair, setValuePair] = useState(false);
   const [closedWait, setClosedWait] = useState(false);
-  const [openSimpleTrip, setOpenSimpleTrip] = useState(0);
-  const [closedSimpleTrip, setClosedSimpleTrip] = useState(0);
-  const [openSimpleKan, setOpenSimpleKan] = useState(0);
-  const [closedSimpleKan, setClosedSimpleKan] = useState(0);
-  const [openValueTrip, setOpenValueTrip] = useState(0);
-  const [closedValueTrip, setClosedValueTrip] = useState(0);
-  const [openValueKan, setOpenValueKan] = useState(0);
-  const [closedValueKan, setClosedValueKan] = useState(0);
+  const [tripletNum, setTripletNum] = useState(0);
+  const [triplets, setTriplets] = useState([
+    {
+      size: 0,
+      open: 0,
+      value: 0,
+    },
+    {
+      size: 0,
+      open: 0,
+      value: 0,
+    },
+    {
+      size: 0,
+      open: 0,
+      value: 0,
+    },
+    {
+      size: 0,
+      open: 0,
+      value: 0,
+    },
+  ])
 
   useEffect(() => {
     const updateMenu = () => {
@@ -98,28 +115,20 @@ function App() {
             setHan={setHan}
             chiitoitsu={chiitoitsu}
             setChiitoitsu={setChiitoitsu}
+            pinfu={pinfu}
+            setPinfu={setPinfu}
+            closedHand={closedHand}
+            setClosedHand={setClosedHand}
             win={win}
             setWin={setWin}
             valuePair={valuePair}
             setValuePair={setValuePair}
             closedWait={closedWait}
             setClosedWait={setClosedWait}
-            openSimpleTrip={openSimpleTrip}
-            setOpenSimpleTrip={setOpenSimpleTrip}
-            closedSimpleTrip={closedSimpleTrip}
-            setClosedSimpleTrip={setClosedSimpleTrip}
-            openSimpleKan={openSimpleKan}
-            setOpenSimpleKan={setOpenSimpleKan}
-            closedSimpleKan={closedSimpleKan}
-            setClosedSimpleKan={setClosedSimpleKan}
-            openValueTrip={openValueTrip}
-            setOpenValueTrip={setOpenValueTrip}
-            closedValueTrip={closedValueTrip}
-            setClosedValueTrip={setClosedValueTrip}
-            openValueKan={openValueKan}
-            setOpenValueKan={setOpenValueKan}
-            closedValueKan={closedValueKan}
-            setClosedValueKan={setClosedValueKan}
+            tripletNum={tripletNum}
+            setTripletNum={setTripletNum}
+            triplets={triplets}
+            setTriplets={setTriplets}
           />}
         </Box>
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, overflow: "hidden", width: "100%" }} elevation={3}>

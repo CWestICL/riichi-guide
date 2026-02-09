@@ -33,28 +33,44 @@ function Scoring({
   setHan,
   chiitoitsu,
   setChiitoitsu,
+  pinfu,
+  setPinfu,
+  closedHand,
+  setClosedHand,
   win,
   setWin,
   valuePair,
   setValuePair,
   closedWait,
   setClosedWait,
-  openSimpleTrip,
-  setOpenSimpleTrip,
-  closedSimpleTrip,
-  setClosedSimpleTrip,
-  openSimpleKan,
-  setOpenSimpleKan,
-  closedSimpleKan,
-  setClosedSimpleKan,
-  openValueTrip,
-  setOpenValueTrip,
-  closedValueTrip,
-  setClosedValueTrip,
-  openValueKan,
-  setOpenValueKan,
-  closedValueKan,
-  setClosedValueKan,
+  tripletNum,
+  setTripletNum,
+  triplets,
+  setTriplets,
+  trip1Size,
+  setTrip1Size,
+  trip2Size,
+  setTrip2Size,
+  trip3Size,
+  setTrip3Size,
+  trip4Size,
+  setTrip4Size,
+  trip1Open,
+  setTrip1Open,
+  trip2Open,
+  setTrip2Open,
+  trip3Open,
+  setTrip3Open,
+  trip4Open,
+  setTrip4Open,
+  trip1Value,
+  setTrip1Value,
+  trip2Value,
+  setTrip2Value,
+  trip3Value,
+  setTrip3Value,
+  trip4Value,
+  setTrip4Value,
 }) {
 
   const handleTabChange = (event, newValue) => {
@@ -111,28 +127,20 @@ function Scoring({
         setHan={setHan}
         chiitoitsu={chiitoitsu}
         setChiitoitsu={setChiitoitsu}
+        pinfu={pinfu}
+        setPinfu={setPinfu}
+        closedHand={closedHand}
+        setClosedHand={setClosedHand}
         win={win}
         setWin={setWin}
         valuePair={valuePair}
         setValuePair={setValuePair}
         closedWait={closedWait}
         setClosedWait={setClosedWait}
-        openSimpleTrip={openSimpleTrip}
-        setOpenSimpleTrip={setOpenSimpleTrip}
-        closedSimpleTrip={closedSimpleTrip}
-        setClosedSimpleTrip={setClosedSimpleTrip}
-        openSimpleKan={openSimpleKan}
-        setOpenSimpleKan={setOpenSimpleKan}
-        closedSimpleKan={closedSimpleKan}
-        setClosedSimpleKan={setClosedSimpleKan}
-        openValueTrip={openValueTrip}
-        setOpenValueTrip={setOpenValueTrip}
-        closedValueTrip={closedValueTrip}
-        setClosedValueTrip={setClosedValueTrip}
-        openValueKan={openValueKan}
-        setOpenValueKan={setOpenValueKan}
-        closedValueKan={closedValueKan}
-        setClosedValueKan={setClosedValueKan}
+        tripletNum={tripletNum}
+        setTripletNum={setTripletNum}
+        triplets={triplets}
+        setTriplets={setTriplets}
       />}
       {scoringTab === 1 && <TenbouReference tenbouColor={tenbouColor} setTenbouColor={setTenbouColor}/>}
     </>
