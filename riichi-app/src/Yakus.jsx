@@ -30,6 +30,21 @@ const YAKUS = [
         difficulty: "basic",
     },
     {
+        jname: "Ippatsu",
+        ename: "One Shot",
+        type: "gameplay",
+        closedh: 1,
+        openh: 0,
+        description: (
+            <>
+                Win by your next tile draw after calling <i><b>"Riichi"</b></i>, without any player making a tile call in the meantime.
+            </>
+        ),
+        note: null,
+        examplehand: null,
+        difficulty: "intermediate",
+    },
+    {
         jname: "Pinfu",
         ename: "Minimum Fu",
         type: "closed",
@@ -632,21 +647,6 @@ const YAKUS = [
             winning: ["1z"],
             tsumo: false,
         },
-        difficulty: "full",
-    },
-    {
-        jname: "Ippatsu",
-        ename: "One Shot",
-        type: "lucky",
-        closedh: 1,
-        openh: 0,
-        description: (
-            <>
-                Win by your next tile draw after calling <i><b>"Riichi"</b></i>, without any player making a tile call in the meantime.
-            </>
-        ),
-        note: null,
-        examplehand: null,
         difficulty: "full",
     },
     {

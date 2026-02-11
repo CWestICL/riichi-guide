@@ -26,6 +26,14 @@
   width: 100%;
 }
 
+a {
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--purple_dark);
+}
+
 .icon-1 {
   height: 100%;
 }
@@ -47,6 +55,8 @@ h1 {
 
 table {
   margin: 0 auto;
+  width: 50vw;
+  max-width: 1280px;
 }
 
 .table-container {
@@ -140,12 +150,16 @@ th {
 }
 
 .yaku-tiles-container {
-  margin-top: 20px;
+  padding: 10px;
+  background-color: rgba(0,0,0,0.08);
+  border-radius: 10px;
+  margin: 16px auto;
+  width: fit-content;
 }
 
 .yaku-tiles {
-  width: 30px;
-  padding: 0 1px 0 1px;
+  width: 42px;
+  padding: 0 2px 0 2px;
 }
 
 .yaku-tiles.kan {
@@ -153,17 +167,18 @@ th {
 }
 
 .yaku-tiles.kan.rotated {
-  height: 30px;
+  height: 42px;
   width: auto;
 }
 
 .kan-group {
   padding: 0 4px 0 4px;
   overflow: none;
+  display: inline-block;
 }
 
 .win-group {
-  padding: 0 0 0 26px;
+  padding: 10px 0 0 0;
   min-height: 100%;
   display: inline-flex;
   align-items: center;
@@ -178,7 +193,6 @@ th {
 .yaku-note {
   opacity: 0.6;
   font-style: italic;
-  margin-top: 16px;
 }
 
 .td-score {
@@ -187,29 +201,93 @@ th {
 }
 
 tbody.td-score td {
-  padding: 0 10px;
+  padding: 4px 10px;
 }
 
-table.td-fu, table.td-trip {
+tbody.td-score td:last-child {
+  font-weight: normal;
+}
+
+table.td-main, table.td-fu, table.td-trip {
   border-collapse:separate; 
   border-spacing: 0 10px;
 }
 
-table.td-fu tr {
-  background-color: var(--blue_mid);
-  margin: 10px 0;
+table.td-main tr {
+  background-color: var(--purple_mid);
 }
 
-table.td-trip tr {
+table.td-fu tr {
+  background-color: var(--blue_mid);
+}
+
+table.td-main td, table.td-fu td, table.td-trip td {
+  padding: 10px;
+}
+
+table.td-main td label, table.td-fu td label {
+  display: none;
+}
+
+table.td-main td:first-child, table.td-fu td:first-child, table.td-trip td:first-child {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+table.td-main td:last-child, table.td-fu td:last-child, table.td-trip td:last-child {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+table.td-fu, table.td-trip {
+  border-width: 0;
+}
+
+table.td-fu .ul-container {
+  text-align: center;
+}
+
+table.td-fu ul {
+  display: inline-block;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+table.td-trip tr.trip-enabled {
   background-color: var(--green_mid);
 }
 
-table.td-trip tr.top {
-  margin-top: 10px;
+table.td-trip tr.trip-disabled {
+  background-color: var(--gray_dark);
 }
 
-table.td-trip tr.bottom {
-  margin-bottom: 10px;
+td.cols2 {
+  width: 50%;
+}
+
+td.cols3 {
+  width: 33%;
+}
+
+table.td-hanfu {
+  background-color: var(--gray_dark);
+  border-radius: 10px;
+  width: 45%;
+  padding: 20px 0;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2);
+  margin: 2em auto;
+}
+
+h1.points, h2.points {
+  font-weight: normal;
+}
+
+h2.points {
+  margin: 0;
+}
+
+h1.invalid {
+  color: firebrick;
 }
 
 .num-field {
@@ -307,6 +385,10 @@ table.td-trip tr.bottom {
   margin: 0 auto;
   }
 
+  table.td-hanfu {
+    width: 100%;
+  }
+
   .ref-tiles {
   width: 40px;
   padding: 6px;
@@ -314,5 +396,13 @@ table.td-trip tr.bottom {
 
   .ref-tenbou {
     width: 230px;
+  }
+
+  .yaku-tiles {
+    width: 34px;
+  }
+
+  .yaku-tiles.kan.rotated {
+    height: 34px;
   }
 }

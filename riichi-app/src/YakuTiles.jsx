@@ -53,6 +53,7 @@ function YakuTiles({ example }) {
     tilesObj["hon"] = split[0];
   }
 
+  const tileDemo = [];
   const tiles = [];
 
   for (let key in tilesObj) {
@@ -71,14 +72,16 @@ function YakuTiles({ example }) {
       for (let x = 0; x < 3; x++) {
         kanGroup.push(<img src={"/tile_" + getTile(example["kan"][i]) + ".png"} className='yaku-tiles kan' />)
       }
-      kanHTML.push(<span className='kan-group'>{kanGroup}</span>)
+      kanHTML.push(<div className='kan-group'>{kanGroup}</div>)
     }
     tiles.push(kanHTML);
   }
 
+  tileDemo.push(<div>{tiles}</div>)
+
   const winningHTML = [];
 
-  winningHTML.push(<img src={"/tile_" + getTile(example["winning"][0]) + ".png"} className='yaku-tiles winning' />)
+  winningHTML.push(<><span className='winning-tile-separator'>Wait:</span><img src={"/tile_" + getTile(example["winning"][0]) + ".png"} className='yaku-tiles winning' /></>)
   if (example["winning"].length > 1) {
     for (let i = 0; i < example["winning"].length-1; i++) {
       winningHTML.push(<span className='winning-tile-separator'>or</span>);
@@ -88,7 +91,7 @@ function YakuTiles({ example }) {
       winningHTML.push(<span className='winning-tile-separator'>(Tsumo only)</span>);
     }
   }
-  tiles.push(<span className='win-group'>{winningHTML}</span>)
+  tileDemo.push(<div className='win-group'>{winningHTML}</div>)
 
   const tileItems = tiles.map(fileName =>
     <img src={"/tile_" + fileName + ".png"} className='yaku-tiles' />
@@ -97,7 +100,7 @@ function YakuTiles({ example }) {
   return (
     <>
       <div className='yaku-tiles-container'>
-        {tiles}
+        {tileDemo}
       </div>
     </>
   )

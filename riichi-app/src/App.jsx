@@ -47,6 +47,7 @@ function App() {
   const [simpleScoring, setSimpleScoring] = useState(false);
   const [dealer, setDealer] = useState(1);
   const [han, setHan] = useState(1);
+  const [honba, setHonba] = useState(0);
   const [chiitoitsu, setChiitoitsu] = useState(false);
   const [pinfu, setPinfu] = useState(false);
   const [closedHand, setClosedHand] = useState(false);
@@ -113,6 +114,8 @@ function App() {
             setDealer={setDealer}
             han={han}
             setHan={setHan}
+            honba={honba}
+            setHonba={setHonba}
             chiitoitsu={chiitoitsu}
             setChiitoitsu={setChiitoitsu}
             pinfu={pinfu}

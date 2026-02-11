@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -20,7 +20,9 @@ import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-function YakuItem({ mini, yaku, english, yakuTab, expanded, setExpanded}) {
+function YakuItem({ mini, yaku, english, yakuTab}) {
+  const [expanded, setExpanded] = useState(null);
+  console.log("render");
   const handleExpandChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };

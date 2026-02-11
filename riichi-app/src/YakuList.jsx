@@ -22,8 +22,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import NativeSelect from '@mui/material/NativeSelect';
 
 function YakuList({ mini, english, setEnglish, yakuTab, setYakuTab}) {
-  const [expanded, setExpanded] = useState(null);
-
+  const [accordionItems, setAccordionItems] = useState(null);
   const handleTabChange = (event, newValue) => {
     console.log(newValue)
     console.log(typeof newValue)
@@ -60,6 +59,17 @@ function YakuList({ mini, english, setEnglish, yakuTab, setYakuTab}) {
     </NativeSelect>
   )
 
+  useEffect(() => {
+    const items = (<>
+      {YAKUS.map((yaku) => (
+          <YakuItem mini={mini} yaku={yaku} english={english} yakuTab={yakuTab} />
+        ))}
+    </>)
+
+    setAccordionItems(items);
+
+  }, [yakuTab]);
+
   return (
     <>
       <h1>Yaku List</h1>
@@ -84,9 +94,7 @@ function YakuList({ mini, english, setEnglish, yakuTab, setYakuTab}) {
             <Item sx={{ fontWeight: "bold", backgroundColor: YAKUCOLORS["openhan"] }}>Open</Item>
           </Grid>
         </Grid>
-        {YAKUS.map((yaku) => (
-          <YakuItem mini={mini} yaku={yaku} english={english} yakuTab={yakuTab} expanded={expanded} setExpanded={setExpanded} />
-        ))}
+        {!accordionItems ? <h1>Loading...</h1> : accordionItems}
       </div>
     </>
   )

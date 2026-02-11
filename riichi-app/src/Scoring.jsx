@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import ScoringTable from './ScoringTable.jsx'
 import TenbouReference from './TenbouReference.jsx'
+import FuCalculator from './FuCalculator.jsx'
 import YAKUS from './Yakus.jsx'
 
 import Accordion from '@mui/material/Accordion';
@@ -18,6 +19,7 @@ import Tab from '@mui/material/Tab';
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import NativeSelect from '@mui/material/NativeSelect';
 
 function Scoring({
   mini,
@@ -31,6 +33,8 @@ function Scoring({
   setDealer,
   han,
   setHan,
+  honba,
+  setHonba,
   chiitoitsu,
   setChiitoitsu,
   pinfu,
@@ -77,6 +81,10 @@ function Scoring({
     setScoringTab(newValue);
   };
 
+  const handleDropChange = (event) => {
+    setScoringTab(Number(event.target.value));
+  };
+
   const numHeaders = []
   for (let i = 1; i < 10; i++) {
     numHeaders.push(<th>{i}</th>)
@@ -110,15 +118,56 @@ function Scoring({
     honTiles.push(<td><img src={"/tile_hon_" + i + ".png"} className='ref-tiles' /></td>)
   }
 
+  const tabMenu = (
+    <Tabs value={scoringTab} onChange={handleTabChange} sx={{ marginBottom: "20px" }} centered>
+      <Tab label="Score Calculator" />
+      <Tab label="Scoring Table" />
+      <Tab label="Tenbou" />
+    </Tabs>
+  )
+
+  const dropMenu = (
+    <NativeSelect value={scoringTab} onChange={handleDropChange} sx={{ marginBottom: "20px" }}>
+      <option value={0}>Score Calculator</option>
+      <option value={1}>Scoring Table</option>
+      <option value={2}>Tenbou</option>
+    </NativeSelect>
+  )
+
   return (
     <>
       <h1>Scoring</h1>
-      <Tabs value={scoringTab} onChange={handleTabChange} sx={{ marginBottom: "20px" }} centered>
-        <Tab label="Scoring Table" />
-        <Tab label="Tenbou" />
-      </Tabs>
-      {scoringTab === 0 && <ScoringTable
+      {mini ? dropMenu : tabMenu}
+      {scoringTab === 0 && <FuCalculator
         mini={mini}
+        simpleScoring={simpleScoring}
+        setSimpleScoring={setSimpleScoring}
+        dealer={dealer}
+        setDealer={setDealer}
+        han={han}
+        setHan={setHan}
+        honba={honba}
+        setHonba={setHonba}
+        chiitoitsu={chiitoitsu}
+        setChiitoitsu={setChiitoitsu}
+        pinfu={pinfu}
+        setPinfu={setPinfu}
+        closedHand={closedHand}
+        setClosedHand={setClosedHand}
+        win={win}
+        setWin={setWin}
+        valuePair={valuePair}
+        setValuePair={setValuePair}
+        closedWait={closedWait}
+        setClosedWait={setClosedWait}
+        tripletNum={tripletNum}
+        setTripletNum={setTripletNum}
+        triplets={triplets}
+        setTriplets={setTriplets}
+      />}
+      {scoringTab === 1 && <ScoringTable
+        mini={mini}
+        setScoringTab={setScoringTab}
         simpleScoring={simpleScoring}
         setSimpleScoring={setSimpleScoring}
         dealer={dealer}
@@ -142,7 +191,7 @@ function Scoring({
         triplets={triplets}
         setTriplets={setTriplets}
       />}
-      {scoringTab === 1 && <TenbouReference tenbouColor={tenbouColor} setTenbouColor={setTenbouColor}/>}
+      {scoringTab === 2 && <TenbouReference tenbouColor={tenbouColor} setTenbouColor={setTenbouColor}/>}
     </>
   )
 }
